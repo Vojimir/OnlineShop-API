@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Http\Request;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -54,6 +55,9 @@ class LoginController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
         // all good so return the token
-        return response()->json(['token' => $token]);
+        $user = \Auth::user();
+        $userr = User::with('manager')->find($user->id);
+        
+        return response()->json(['token' => $token,'user' => $userr ]);
     }
 }

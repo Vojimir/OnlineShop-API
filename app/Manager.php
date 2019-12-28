@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Shop;
+use App\User;
+
 
 class Manager extends Model
 {
@@ -14,5 +17,11 @@ class Manager extends Model
                         ->orderBy('first_name')
                         // ->paginate(5);
                         ->get();
+    }
+    public function user() {
+        return $this->hasOne(User::class);
+    }
+    public function shop() {
+        return $this->hasOne(Shop::class);
     }
 }
