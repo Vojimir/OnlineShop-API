@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ShopRequest;
 use App\Manager;
 use App\Shop;
+use App\Article;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -124,6 +125,9 @@ class ShopController extends Controller
     public function destroy($id)
     {
         $shop = Shop::find($id);
+        $shop->articles()->delete();
+        $manager = Manager::find($shop->manager_id)->first();
+        $manager->update(['shop_id' => null]);
         $shop->delete();
     }
-}
+}   
