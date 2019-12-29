@@ -18,6 +18,7 @@ Route::post('/login', 'Auth\LoginController@authenticate');
 Route::resource('/managers', 'ManagerController');
 Route::resource('/shops', 'ShopController');
 Route::resource('/articles', 'ArticleController');
+Route::resource('/comments', 'CommentsController');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
 return $request->user();
 });

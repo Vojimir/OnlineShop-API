@@ -111,6 +111,8 @@ class ShopController extends Controller
         $shop->update($request->all());
 
         return $shop;
+
+        
     }
 
     /**
